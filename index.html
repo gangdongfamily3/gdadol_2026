@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>강동구 아이돌봄팀 2026 업무 매뉴얼</title>
+<style>
+:root{--blue:#2776bb;--pale:#eaf6ff;--line:#dce8f1;--ink:#26384b}
+*{box-sizing:border-box}body{margin:0;font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;color:var(--ink);background:#f5f9fc}
+button,input,textarea{font:inherit}button{cursor:pointer}
+header{height:76px;background:linear-gradient(110deg,#83c6ee,#d9f3ff);display:flex;align-items:center;gap:18px;padding:0 24px;position:sticky;top:0;z-index:5;box-shadow:0 2px 9px #aec9d644}
+header h1{font-size:21px;margin:0;flex:1;color:#164f7d}header small{font-size:12px;display:block;color:#426e8c}
+.iconbtn{border:0;background:#ffffffaa;border-radius:9px;padding:9px 12px}
+.quick{position:relative}.quickmenu{display:none;position:absolute;right:0;top:43px;background:white;min-width:210px;border:1px solid var(--line);box-shadow:0 8px 24px #173f6122;border-radius:12px;padding:8px}.quickmenu.open{display:block}.quickmenu a{display:block;padding:11px;color:var(--ink);text-decoration:none;border-radius:7px}.quickmenu a:hover{background:var(--pale)}
+.layout{display:flex;min-height:calc(100vh - 76px)}
+aside{width:250px;flex-shrink:0;background:white;border-right:1px solid var(--line);padding:20px 12px;position:sticky;top:76px;height:calc(100vh - 76px);overflow:auto}
+.search{width:100%;border:1px solid #c9deec;border-radius:10px;padding:12px;margin-bottom:18px}
+aside h3{font-size:12px;color:#8095a5;letter-spacing:2px;margin:12px}
+.nav{display:block;width:100%;text-align:left;padding:13px 12px;margin:3px 0;background:transparent;border:0;border-radius:10px;color:#38516a}
+.nav:hover,.nav.active{background:#e6f4ff;color:#176aa9;font-weight:700}
+main{width:100%;max-width:1120px;margin:0 auto;padding:28px 30px 80px}
+.page{display:none}.page.active{display:block}
+h2{color:#235d8b;font-size:25px;margin:0 0 17px}
+h3{color:#285f87}.sub{color:#72899b;margin:0 0 22px}
+.card{background:white;border:1px solid var(--line);border-radius:16px;padding:23px;margin:15px 0;box-shadow:0 4px 16px #c9dce829}
+.notice{background:#fff9e9;border-left:4px solid #e6b452;padding:13px;border-radius:7px;line-height:1.7}
+details{border:1px solid var(--line);border-radius:11px;background:white;margin:10px 0;overflow:hidden}
+summary{cursor:pointer;padding:16px;font-weight:700;background:#f8fcff;list-style:none}
+summary:after{content:"⌄";float:right;color:#367eb4}details[open] summary:after{content:"⌃"}
+.detailbody{padding:17px;line-height:1.85;border-top:1px solid var(--line);white-space:pre-line}
+.copy{background:#e6f3ff;color:#1269a9;border:0;padding:8px 12px;border-radius:8px;margin-top:10px}
+.tasks label{display:block;padding:12px;border-bottom:1px solid #edf1f4;line-height:1.5}
+.tasks input{margin-right:9px;accent-color:#2886c5}
+.calbar{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:14px}
+.calbar button,.primary{border:0;border-radius:9px;background:#287fbe;color:white;padding:9px 13px}
+.calgrid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}
+.dayname{text-align:center;color:#71899b;font-size:13px;padding:9px}
+.day{min-height:75px;background:#f8fbfd;border:1px solid #e2edf4;border-radius:8px;padding:8px;text-align:left;color:#3c5b73}
+.day.today{border:2px solid #348ed0}.day.selected{background:#d8efff}
+.day .dot{display:block;background:#5ea8d6;width:6px;height:6px;border-radius:50%;margin-top:8px}
+.eventform{display:flex;gap:8px;margin:12px 0}.eventform input{min-width:0;flex:1;border:1px solid #c9deec;border-radius:8px;padding:10px}
+.event{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #e8eef3;padding:9px 0;gap:10px}
+.event button{border:0;color:#ad4c4c;background:#fff1f1;border-radius:7px;padding:5px 9px}
+.muted{color:#7890a3;font-size:13px}
+#results{display:none}.hit{width:100%;text-align:left;background:white;border:1px solid var(--line);padding:13px;margin:5px 0;border-radius:9px}
+footer{text-align:center;color:#90a3b3;padding:25px;font-size:12px}
+@media(max-width:760px){header{height:66px;padding:0 12px;gap:9px}header h1{font-size:16px}.layout{min-height:calc(100vh - 66px)}aside{position:fixed;z-index:4;top:66px;bottom:0;left:0;height:auto;transform:translateX(-105%);transition:.2s;box-shadow:3px 5px 15px #1e527333}aside.open{transform:translateX(0)}main{padding:20px 13px}.card{padding:15px}.day{min-height:55px;padding:5px;font-size:12px}.quickmenu{right:0}}
+</style>
+</head>
+<body>
+<header>
+<button class="iconbtn" id="menuToggle" aria-label="메뉴 열기">☰</button>
+<h1>🩵 강동구 아이돌봄팀 <small>2026 업무 매뉴얼</small></h1>
+<div class="quick"><button class="iconbtn" id="quickToggle">🔗 바로가기 ▾</button>
+<div class="quickmenu" id="quickMenu">
+<a href="https://www.idolbom.go.kr/" target="_blank" rel="noopener">🏠 아이돌봄서비스 이용자</a>
+<a href="https://care.idolbom.go.kr/" target="_blank" rel="noopener">👩‍🍼 아이돌보미 사이트</a>
+<a href="https://www.bokjiro.go.kr/" target="_blank" rel="noopener">📄 복지로</a>
+<a href="https://www.familynet.or.kr/" target="_blank" rel="noopener">🏢 가족센터</a>
+</div></div>
+</header>
+<div class="layout">
+<aside id="sidebar">
+<input id="search" class="search" placeholder="🔍 업무 내용 검색..." aria-label="업무 검색">
+<h3>메뉴</h3>
+<nav id="nav"></nav>
+</aside>
+<main>
+<section id="results"><h2>🔍 검색 결과</h2><div id="hits"></div></section>
+<div id="pages"></div>
+<footer>강동구 아이돌봄팀 · 2026 업무 매뉴얼 | 내부 업무 내용은 담당자 검토 후 사용하세요.</footer>
+</main>
+</div>
+<script>
+/* ============================================================
+  업무 내용 수정 방법:
+  1. 아래 MANUAL 배열의 title(메뉴명), items의 title/body를 수정합니다.
+  2. \n 을 사용하면 문단을 나눌 수 있습니다.
+  3. 새 메뉴나 항목도 같은 형태로 추가할 수 있습니다.
+  주의: 공개 GitHub 저장소에 개인정보·비공개 문서를 넣지 마세요.
+============================================================ */
+const MANUAL=[
+ {id:"schedule",icon:"📆",title:"팀 일정 달력",intro:"일일 업무와 팀 일정을 관리합니다.",items:[]},
+ {id:"response",icon:"📢",title:"응대 기본",intro:"전화 응대와 문자·알림톡 문구 예시입니다.",items:[
+  {title:"📞 전화 응대 기본",body:"전화 받을 때: 안녕하세요. 강동구 아이돌봄팀 ○○○입니다.\n확인이 필요할 때: 정확한 안내를 위해 확인 후 다시 연락드리겠습니다.\n통화 종료 시: 문의해 주셔서 감사합니다.\n\n※ 민감한 개인정보는 전화로 안내하기 전에 내부 확인 절차를 준수하세요."},
+  {title:"💬 알림톡·문자 발송 예시",body:"안녕하세요. 강동구 아이돌봄팀입니다.\n문의하신 내용에 대해 안내드립니다.\n[안내 내용 입력]\n추가 문의사항은 센터로 연락 부탁드립니다.\n감사합니다.\n\n※ 발송 전 수신자, 날짜, 연락처, 지침을 반드시 확인하세요."},
+  {title:"📝 1:1 문의 답변",body:"안녕하세요. 강동구 아이돌봄팀입니다.\n문의하신 사항을 확인하여 안내드립니다.\n[처리 결과 입력]\n감사합니다."},
+  {title:"⚠️ 민원 응대 시 확인사항",body:"1. 문의 내용을 정확히 듣고 핵심을 기록합니다.\n2. 확인되지 않은 사항은 즉답하지 않습니다.\n3. 필요시 담당자 또는 책임자에게 공유합니다.\n4. 처리 결과와 후속 조치를 기록합니다.\n5. 개인정보를 불필요하게 수집하거나 노출하지 않습니다."}
+ ]},
+ {id:"users",icon:"👨‍👩‍👧",title:"이용자",intro:"이용자 등록·변경·상담 관련 예시입니다.",items:[
+  {title:"신규 이용자 신청 안내",body:"1. 아이돌봄서비스 공식 홈페이지 안내\n2. 회원가입 및 아동 정보 등록 절차 안내\n3. 정부지원 신청 여부 및 판정 상태 확인\n4. 서비스 이용 신청 절차 안내\n\n※ 세부 자격·제출서류·처리기한은 2026년 공식 지침으로 확인 후 기재하세요."},
+  {title:"이용자 정보 변경",body:"1. 본인확인 절차 준수\n2. 변경 신청 내용 확인\n3. 관련 시스템 처리 가능 여부 확인\n4. 처리 결과 안내 및 기록"},
+  {title:"대기자 문의 응대",body:"대기 및 연계 여부는 신청 조건, 활동 가능 인력, 기관 운영 상황 등에 따라 달라질 수 있습니다.\n정확한 순번이나 예상 연계일은 담당자가 확인한 범위에서만 안내합니다."},
+  {title:"서비스 종류·요금",body:"[2026년 공식 서비스 종류·요금표 입력 예정]\n금액·정부지원 시간·할인 기준은 공식 지침과 최신 공지로 검증 후 입력하세요."}
+ ]},
+ {id:"caregivers",icon:"👩‍🍼",title:"아이돌보미",intro:"아이돌보미 관리 업무의 기본 점검 항목입니다.",items:[
+  {title:"신규 아이돌보미 관리",body:"1. 자격 및 제출서류 확인\n2. 교육·활동 관련 절차 확인\n3. 시스템 등록 여부 점검\n4. 안내사항 전달 및 기록"},
+  {title:"근태·휴가 관리",body:"1. 신청 내역 확인\n2. 배정 및 활동 일정과 중복 여부 확인\n3. 관련 규정과 승인 권한 확인\n4. 승인 또는 보완 요청\n\n※ 승인 시점과 세부 기준은 센터 운영 지침을 반영하세요."},
+  {title:"정보 변경·계좌 변경",body:"1. 변경 신청자 본인확인\n2. 증빙자료 및 내부 승인 절차 확인\n3. 시스템 변경 처리\n4. 변경 이력 기록\n\n※ 계좌번호 등 개인정보는 공개 웹사이트에 기록하지 않습니다."},
+  {title:"활동 관련 문의",body:"문의 유형을 구분해 담당자에게 연결하고, 처리 내용과 후속 조치를 기록합니다."}
+ ]},
+ {id:"services",icon:"📋",title:"서비스 신청·배정",intro:"정기·단기 신청 및 배정 업무 예시입니다.",items:[
+  {title:"정기서비스 신청 확인",body:"1. 신청 내역과 이용 희망 일정 확인\n2. 이용자 자격 및 신청 상태 확인\n3. 아이돌보미 활동 가능 일정 확인\n4. 배정·승인 절차 수행\n5. 결과 안내 및 기록"},
+  {title:"단기서비스 신청 확인",body:"1. 공식 시스템의 신청 가능 여부 확인\n2. 이용 시간과 요청사항 확인\n3. 배정 상태 점검\n4. 이용자에게 확인된 결과만 안내\n\n※ 신청 가능 시간 등은 최신 공식 지침에 맞춰 수정하세요."},
+  {title:"취소·변경 처리",body:"1. 변경·취소 요청 접수\n2. 적용 규정 및 처리 가능 상태 확인\n3. 시스템 처리\n4. 수수료·패널티 발생 여부는 공식 기준 확인 후 안내\n5. 처리 결과 기록"},
+  {title:"배정 시 주의사항",body:"아동 안전, 활동 가능 시간, 이용자 요청, 아이돌보미 일정 및 내부 운영 기준을 종합적으로 확인합니다."}
+ ]},
+ {id:"finance",icon:"💸",title:"급여·회계",intro:"금전 관련 업무는 반드시 내부 승인 절차를 따르세요.",items:[
+  {title:"급여 업무 체크",body:"1. 활동 및 근태 자료 대조\n2. 지급 항목·공제 항목 검토\n3. 담당자·책임자 확인\n4. 지급 처리 후 증빙 정리\n\n※ 실제 산식과 지급일은 센터 기준을 입력하세요."},
+  {title:"예치금·환불 관련",body:"1. 문의자 및 요청사항 확인\n2. 시스템 내 잔액·처리 상태 확인\n3. 환불 가능 여부와 절차 검토\n4. 승인 권한자 확인 후 처리\n5. 처리 결과 기록"},
+  {title:"월말 회계 점검",body:"증빙 누락, 금액 불일치, 미처리 내역, 승인 상태를 확인하고 관련 자료를 보관합니다."}
+ ]},
+ {id:"forms",icon:"📂",title:"서식·자료실",intro:"센터에서 승인한 공식 서식 링크를 등록하세요.",items:[
+  {title:"2026년 공식 업무 지침",body:"[공식 PDF 또는 내부 문서 링크 입력 예정]\n※ 공개 권한이 확인된 자료만 연결하세요."},
+  {title:"업무 서식 모음",body:"[신청서·확인서·관리대장 등 센터 승인 서식 링크 입력 예정]"},
+  {title:"자주 묻는 질문",body:"Q. 정확한 기준이 궁금할 때는?\nA. 최신 공식 지침과 내부 담당자 확인을 우선합니다.\n\nQ. 사이트 내용이 지침과 다를 때는?\nA. 공식 지침을 우선 적용하고 사이트 내용을 수정합니다."}
+ ]}
+];
+const TASKS=[
+"시스템 문의·미처리 내역 확인",
+"정기·단기 서비스 신청 및 취소 상태 확인",
+"이용자 승인 요청·정보 변경 내역 확인",
+"아이돌보미 정보 변경·근태 신청 확인",
+"배정 일정과 후속 안내사항 점검",
+"급여·회계 관련 특이사항 공유",
+"당일 민원·전화 문의 처리 결과 기록"
+];
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+let active="schedule",month=new Date(),selected=new Date();
+const dateKey=d=>[d.getFullYear(),String(d.getMonth()+1).padStart(2,"0"),String(d.getDate()).padStart(2,"0")].join("-");
+const getData=(key,fallback)=>{try{return JSON.parse(localStorage.getItem(key))??fallback}catch{return fallback}};
+const saveData=(key,val)=>{try{localStorage.setItem(key,JSON.stringify(val))}catch{alert("브라우저 저장이 제한되어 있습니다.")}};
+function renderNav(){
+ $("nav").innerHTML=MANUAL.map(x=>`<button class="nav ${x.id===active?"active":""}" data-page="${x.id}">${x.icon} ${esc(x.title)}</button>`).join("");
+ document.querySelectorAll("[data-page]").forEach(b=>b.onclick=()=>show(b.dataset.page));
+}
+function show(id){
+ active=id;$("results").style.display="none";$("pages").style.display="block";
+ document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id==="page-"+id));
+ renderNav();$("sidebar").classList.remove("open");window.scrollTo(0,0);
+}
+function renderPages(){
+ $("pages").innerHTML=MANUAL.map(x=>`<section class="page" id="page-${x.id}">
+ <h2>${x.icon} ${esc(x.title)}</h2><p class="sub">${esc(x.intro)}</p>
+ ${x.id==="schedule"?'<div class="card"><h3>☑️ 매일 아침 확인 리스트</h3><p class="muted">체크 상태는 날짜별로 이 브라우저에 저장됩니다.</p><div id="tasks" class="tasks"></div></div><div class="card"><div class="calbar"><button id="prev">◀</button><strong id="monthTitle"></strong><button id="next">▶</button><button id="today">오늘</button></div><div id="calendar" class="calgrid"></div><h3 id="selectedTitle"></h3><div class="eventform"><input id="eventInput" maxlength="160" placeholder="선택한 날짜에 일정 입력"><button class="primary" id="addEvent">추가</button></div><div id="eventList"></div></div>':
+ x.items.map((item,i)=>`<details><summary>${esc(item.title)}</summary><div class="detailbody">${esc(item.body)}<div><button class="copy" data-copy="${x.id}-${i}">📋 문구 복사</button></div></div></details>`).join("")}
+ </section>`).join("");
+ document.querySelectorAll("[data-copy]").forEach(b=>b.onclick=()=>{
+  const [id,i]=b.dataset.copy.split("-");const item=MANUAL.find(x=>x.id===id).items[Number(i)];
+  navigator.clipboard.writeText(item.body).then(()=>{b.textContent="✓ 복사 완료";setTimeout(()=>b.textContent="📋 문구 복사",1500)}).catch(()=>alert("브라우저 복사가 제한되어 있습니다."));
+ });
+ $("prev").onclick=()=>{month=new Date(month.getFullYear(),month.getMonth()-1,1);renderCalendar()};
+ $("next").onclick=()=>{month=new Date(month.getFullYear(),month.getMonth()+1,1);renderCalendar()};
+ $("today").onclick=()=>{month=new Date();selected=new Date();renderCalendar();renderTasks()};
+ $("addEvent").onclick=addEvent;
+ $("eventInput").onkeydown=e=>{if(e.key==="Enter")addEvent()};
+ renderCalendar();renderTasks();show(active);
+}
+function renderTasks(){
+ const key="gd-tasks-"+dateKey(new Date()),checked=getData(key,[]);
+ $("tasks").innerHTML=TASKS.map((t,i)=>`<label><input type="checkbox" data-task="${i}" ${checked.includes(i)?"checked":""}>${esc(t)}</label>`).join("");
+ $("tasks").querySelectorAll("input").forEach(el=>el.onchange=()=>{
+  saveData(key,[...$("tasks").querySelectorAll("input:checked")].map(e=>Number(e.dataset.task)));
+ });
+}
+function renderCalendar(){
+ $("monthTitle").textContent=`${month.getFullYear()}년 ${month.getMonth()+1}월`;
+ const year=month.getFullYear(),m=month.getMonth(),start=new Date(year,m,1).getDay(),end=new Date(year,m+1,0).getDate();
+ const events=getData("gd-events",{});
+ let out=["일","월","화","수","목","금","토"].map(d=>`<div class="dayname">${d}</div>`).join("");
+ for(let i=0;i<start;i++)out+='<div></div>';
+ for(let day=1;day<=end;day++){
+  const d=new Date(year,m,day),key=dateKey(d);
+  out+=`<button class="day ${key===dateKey(new Date())?"today":""} ${key===dateKey(selected)?"selected":""}" data-date="${key}">${day}${(events[key]||[]).length?'<span class="dot"></span>':""}</button>`;
+ }
+ $("calendar").innerHTML=out;
+ document.querySelectorAll("[data-date]").forEach(b=>b.onclick=()=>{
+  const [y,m,d]=b.dataset.date.split("-").map(Number);selected=new Date(y,m-1,d);renderCalendar();
+ });
+ renderEvents();
+}
+function renderEvents(){
+ const key=dateKey(selected),events=getData("gd-events",{});
+ $("selectedTitle").textContent=`📌 ${key} 일정`;
+ $("eventList").innerHTML=(events[key]||[]).length?(events[key]||[]).map((s,i)=>`<div class="event"><span>${esc(s)}</span><button data-remove="${i}">삭제</button></div>`).join(""):'<p class="muted">등록된 일정이 없습니다.</p>';
+ $("eventList").querySelectorAll("[data-remove]").forEach(b=>b.onclick=()=>{
+  const all=getData("gd-events",{});all[key].splice(Number(b.dataset.remove),1);saveData("gd-events",all);renderCalendar();
+ });
+}
+function addEvent(){
+ const val=$("eventInput").value.trim();if(!val)return;
+ const all=getData("gd-events",{}),key=dateKey(selected);(all[key]??=[]).push(val);
+ saveData("gd-events",all);$("eventInput").value="";renderCalendar();
+}
+function search(){
+ const q=$("search").value.trim().toLowerCase();
+ if(!q){$("results").style.display="none";$("pages").style.display="block";return}
+ $("results").style.display="block";$("pages").style.display="none";
+ const hits=[];
+ MANUAL.forEach(section=>{
+  if(section.title.toLowerCase().includes(q))hits.push({id:section.id,title:section.title,sub:"메뉴"});
+  section.items.forEach((item,i)=>{
+   if((item.title+" "+item.body).toLowerCase().includes(q))hits.push({id:section.id,title:item.title,sub:section.title,index:i});
+  });
+ });
+ $("hits").innerHTML=hits.length?hits.map((h,i)=>`<button class="hit" data-hit="${i}"><strong>${esc(h.title)}</strong><br><span class="muted">${esc(h.sub)}</span></button>`).join(""):'<p>검색 결과가 없습니다.</p>';
+ document.querySelectorAll("[data-hit]").forEach(b=>b.onclick=()=>{
+  const h=hits[Number(b.dataset.hit)];$("search").value="";show(h.id);
+  if(h.index!==undefined){const d=$("page-"+h.id).querySelectorAll("details")[h.index];if(d){d.open=true;d.scrollIntoView({behavior:"smooth",block:"center"})}}
+ });
+}
+$("search").addEventListener("input",search);
+$("menuToggle").onclick=()=>$("sidebar").classList.toggle("open");
+$("quickToggle").onclick=()=>$("quickMenu").classList.toggle("open");
+document.addEventListener("click",e=>{if(!e.target.closest(".quick"))$("quickMenu").classList.remove("open")});
+renderPages();
+</script>
+</body>
+</html>
